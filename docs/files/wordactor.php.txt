@@ -1,0 +1,29 @@
+<?php
+/*                                                      
+Plugin Name: wp-redactor                            
+Plugin URI:  https://github.com/DataSyncTech/wp-redactor/                         
+Description: A Wordpress plugin to enable redaction of text from published posts                     
+Version:     0.0.1                         
+Author:      DataSync                          
+Author URI:  DataSync                          
+License:     GPL2                         
+*/                                                       
+
+
+include_once('utils/environment_setup.php');
+
+
+
+add_action('plugins_loadedi','datasync_i18n_init');
+
+//are we compatible with this version of PHP?
+if (1) {
+
+    include_once('dctr_init.php');
+    datasync_init(__FILE__);
+
+}/*else{
+    add_action('admin_notices', 'datasync_notifyWrongPhpVersion');
+}*/
+
+?>

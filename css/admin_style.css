@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+.redactor_options_group .form-table select {
+	width: 200px;
+}
+
+.redactor_options_group .form-table td {
+	vertical-align: top;
+	padding-top: 20px;
+}
+
+.redactor_options_group .form-table p.helptext {
+	margin-top: 0;
+	font-weight: normal;
+	font-size: 11px;
+}
+

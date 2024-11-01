@@ -1,0 +1,197 @@
+<?php
+/**                                                                    
+* Redactor                                                      
+*                                                                      
+* @package     Redactor                                         
+* @author      DataSync Technologies                                       
+* @copyright   2016 DataSync Technologies                                  
+* @license                                                             
+*                                                                      
+*/                                                                     
+if( ! defined( 'ABSPATH' ) ) exit;                                   
+
+
+
+require_once( 'redactor-controller.php' );
+require_once( __DIR__.'/../utils/constants.php' );
+
+
+class RedactorView{
+
+    /**
+    * Plugin singleton
+    * @var object
+    * @access private
+    * @since 0.0.1
+    */
+    private static $_instance = null;
+
+    /**
+    * Plugin version
+    * @var string
+    * @access private
+    * @since 0.0.1
+    */
+    private $_version;
+
+    /**
+    * Plugin's file path
+    * @var string
+    * @access private
+    * @since 0.0.1
+    */
+    private $_file;
+
+    /**
+    * Plugin directory
+    * @var string
+    * @access private
+    * @since 0.0.1
+    */
+    private $_dir;
+
+    /**
+    * Plugin assets web path
+    * @var string
+    * @access private
+    * @since 0.0.1
+    */
+    private $_assets_url;
+
+    /**
+    * Plugin assets file path
+    * @var string
+    * @access private
+    * @since 0.0.1
+    */
+    private $_assets_dir;
+
+    /**
+    * Plugin languages path
+    * @var string
+    * @access private
+    * @since 0.0.1
+    */
+    private $_languages_dir;
+
+    /**
+     * A string of the class name
+     * @var string
+     * @access private
+     */
+    private $_className;
+    
+    /**
+     * Gets a singleton of this plugin
+     *
+     * Retrieves or creates the plugin singleton.
+     *
+     * @static
+     * @access public
+     * @since 0.0.1
+     * @return plugin singleton
+     * @return  void
+     */
+    public static function get_instance ( $file = '', $version = '0.0.1' ) {
+        if ( is_null( self::$_instance ) ) {
+            self::$_instance = new self( $file, $version );
+        }
+        return self::$_instance;
+    }
+
+   /**
+     * Create and initializes the plugin
+     *
+     * The plugin is a singleton so the constructor remains private
+     *
+     * @access private
+     * @since 0.0.1
+     * @return  void
+     */
+    final private function __construct( $file = '', $version = '0.0.1' ) {
+        $this->_className = 'redactorView';
+
+        //sets all of the plugin urls so it can reach out to other places
+        $this->_createURLs( $file );
+
+        //sets the plugin version for backwards compat checks
+        $this->_version = $version;
+    }
+
+
+
+   /**
+     * Helper function on whether SCRIPT_DEBUG is set
+     *
+     * Returns whether or not SCRIPT_DEBUG is set or not
+     *
+     * @static
+     * @since 0.0.1
+     * @return  boolean
+     */
+    static function is_script_debug(){
+        return defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+    }
+
+   /**
+     * Helper function on whether WP_DEBUG is set
+     *
+     * Returns whether or not WP_DEBUG is set.
+     *
+     * @static
+     * @since 0.0.1
+     * @return  boolean
+     */
+    static function is_wordpress_debug(){
+        return defined( 'WP_DEBUG' ) && WP_DEBUG;
+    }
+
+
+   /**
+     * Create and initializes paths for the plugin
+     *
+     * Stores all of the paths that the plugin will use to access the world
+     *
+     * @access private
+     * @since 0.0.1
+     * @return  void
+     */
+    private function _createURLs( $file ) {
+        $this->_file        = $file;
+        $this->_dir         = dirname($file);
+        $this->_assets_dir  = trailingslashit( $this->_dir );
+        $this->_assets_url  = esc_url(
+            trailingslashit(
+                plugins_url( '', $this->_file )
+            )
+        );
+
+        $this->_languages_dir = trailingslashit( $this->_dir ) . 'languages';
+    }
+
+
+
+   /**
+     * Not allowed
+     *
+     * The plugin is a singleton so don't allow cloning.
+     *
+     * @access private
+     * @since 0.0.1
+     * @return  void
+     */
+    final private function __clone() {}
+
+    /**
+     * Wraps the redacted string in to a <span> that formats it correctly for displaying
+     * to the user.
+     * @param string $style
+     * @param string $who
+     * @param string $when
+     * @param string $str
+     * @return string
+     */
+    public function redactStringToHTML($style, $who, $when, $str){
+        return sprintf("<span class='%s' title='Redacted by %s on %s'>%s</span>", $style, $who, $when, $str);
+    }
+}

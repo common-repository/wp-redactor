@@ -1,0 +1,97 @@
+/**                                                                    
+* wordactor                                                      
+*                                                                      
+* @package     wordactor                                         
+* @author      William P. Michaels                                       
+* @copyright   2016 William P. Michaels                                  
+* @license                                                             
+*                                                                      
+* @wordpress-plugin                                                    
+* Plugin Name: wordactor                                         
+* Plugin URI:  https://bitbucket.org/psiphonshiniz/wordactor           
+* Description: Wordpress plugin to manage content server wide                                  
+* Version:     0.0.1                                      
+* Author:      William P. Michaels                                       
+* Author URI:  https://shiniz.com                                      
+* Text Domain: dctr                                                    
+* License:     BSD-2-Clause                                      
+* License URI:                                                         
+*                                                                      
+*/                                                                     
+
+/**                                                                    
+* wordactor                                                      
+*                                                                      
+* @package     wordactor                                         
+* @author      William P. Michaels                                       
+* @copyright   2016 William P. Michaels                                  
+* @license                                                             
+*                                                                      
+* @wordpress-plugin                                                    
+* Plugin Name: wordactor                                         
+* Plugin URI:  https://bitbucket.org/psiphonshiniz/wordactor           
+* Description: Wordpress plugin to manage content server wide                                  
+* Version:     0.0.1                                      
+* Author:      William P. Michaels                                       
+* Author URI:  https://shiniz.com                                      
+* Text Domain: dctr                                                    
+* License:     BSD-2-Clause                                      
+* License URI:                                                         
+*                                                                      
+*/                                                                     
+
+<?php
+/**                                                                    
+* wordactor                                                      
+*                                                                      
+* @package     wordactor                                         
+* @author      William P. Michaels                                       
+* @copyright   2016 William P. Michaels                                  
+* @license                                                             
+*                                                                      
+* @wordpress-plugin                                                    
+* Plugin Name: wordactor                                         
+* Plugin URI:  https://bitbucket.org/psiphonshiniz/wordactor           
+* Description: Wordpress plugin to manage content server wide                                  
+* Version:     0.0.1                                      
+* Author:      William P. Michaels                                       
+* Author URI:  https://shiniz.com                                      
+* Text Domain: dctr                                                    
+* License:     BSD-2-Clause                                      
+* License URI:                                                         
+*                                                                      
+*                                                                      
+* Don't use any advanced features in this file to ensure it remains   
+* PHP backwards compatible                                             
+*                                                                      
+*/                                                                     
+
+include_once('constants.php');
+
+
+function dctr_notifyWrongPhpVersion() {
+    global $dctr_PHP_MINIMUM_VERSION;
+    echo
+        '<div class="notice notice-success is-dismissible">'.
+        __(
+            'Error: plugin "'.
+                $dctr_PLUGIN_PUBLIC_NAME.
+                '" is not compatible with the current version of PHP. (requires php > '.
+                $dctr_PHP_MINIMUM_VERSION .
+            ')',
+            $dctr_PLUGIN_PRIVATE_NAME
+        ).
+        '<div>';
+}
+
+function dctr_isCompatiblePhp() {
+    global $dctr_PHP_MINIMUM_VERSION;
+    return version_compare(phpversion(), $dctr_PHP_MINIMUM_VERSION) < 0;
+}
+
+function dctr_i18n_init() {
+    $pluginDir = dirname(plugin_basename(__FILE__));
+    load_plugin_textdomain($dctr_PLUGIN_PRIVATE_NAME, false, $pluginDir . '/languages/');
+}
+
+?>

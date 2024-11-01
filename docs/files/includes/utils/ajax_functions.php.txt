@@ -1,0 +1,91 @@
+<?php
+
+
+require_once( __DIR__ . '/../redactor/redactor-model.php' );
+
+
+function ajax_updateRules(){
+    $redactorModel = RedactorModel::get_instance();
+
+    $id          = ( isset($_POST['id'])           && is_string($_POST['id'])           )? intval($_POST['id'],10) : -1;
+    $user        = ( isset($_POST['str_username']) && is_string($_POST['str_username']) )? $_POST['str_username'] : wp_get_current_user();
+    $permissions = ( isset($_POST['str_groups'])   && is_string($_POST['str_groups'])   )? $_POST['str_groups'] : '';
+    $rule        = ( isset($_POST['rx_redaction']) && is_string($_POST['rx_redaction']) )? $_POST['rx_redaction'] : '';
+
+    $results = false;
+    if($id > 0){
+        $results = $redactorModel->updateRule($id, $rule, $permissions, $user);
+    }
+
+    echo json_encode($results);
+
+    wp_die();
+}
+
+function ajax_deleteRules(){
+    $redactorModel = RedactorModel::get_instance();
+
+    $idInput = ( isset($_POST['id']))? $_POST['id'] : array();
+    if(is_integer($idInput)){
+        $idInput = array($idInput);
+
+    }
+    $results = false;
+
+    if( is_array($idInput) ){
+        $deleteRows = array_filter($idInput, "datasync_isPositiveInteger");
+
+        $resultArray = array();
+        foreach($deleteRows as $id){
+            $resultArray[] = array(
+                    'id' => $id,
+                    'result' => $redactorModel->deleteRule($id) );
+        }
+
+        $results = $resultArray;
+    }
+
+    echo json_encode($results);
+
+    wp_die();
+}
+
+function ajax_addRules(){
+    $redactorModel = RedactorModel::get_instance();
+
+    $user        = ( isset($_POST['str_username']) && is_string($_POST['str_username']) )? $_POST['str_username'] : wp_get_current_user();
+    $permissions = ( isset($_POST['str_groups'])   && is_string($_POST['str_groups'])   )? $_POST['str_groups'] : '';
+    $rule        = ( isset($_POST['rx_redaction']) && is_string($_POST['rx_redaction']) )? $_POST['rx_redaction'] : '';
+
+    $results = array();
+    if($rule != ''){
+        $results = $redactorModel->createRule($rule, $permissions, $user);
+    }           
+
+    echo json_encode($results);
+
+    wp_die();
+}
+
+function ajax_getRules(){
+    $redactorModel = RedactorModel::get_instance();
+
+    $offset = ( isset($_GET['offset']) && is_integer($_GET['offset']))? $_GET['offset'] : 0;
+    $limit = 50;
+
+    $rowCount = $redactorModel->getRuleRowCount();
+    //$results = $redactorModel->getRawRuleRecords($offset, $limit);
+
+    $results = $redactorModel->getRawRuleRecords(0, 50000);
+
+
+    $output = array(
+        'offset' => $offset,
+        'limit' => $limit,
+        'total' => $rowCount,
+        'results' => $results
+    );
+
+    echo json_encode($output);
+    wp_die();
+}

@@ -1,0 +1,84 @@
+<?php
+/**                                                                    
+* Redactor                                                      
+*                                                                      
+* @package     Redactor                                         
+* @author      DataSync Technologies                                       
+* @copyright   2016 DataSync Technologies                                  
+* @license                                                             
+*                                                                      
+*/                                                                     
+if( ! defined( 'ABSPATH' ) ) exit;                                   
+
+
+
+/**
+ * Takes an array of objects and returns an array of $key from each object.
+ *
+ * @since 0.0.1
+ * @param string $key The attribute to pluck from the array of objects
+ * @return array The array of $keys from each object.
+ */
+function datasync_pluckAttribute($key, $arrSource){
+     $plucked = array();
+      foreach ($arrSource as $row) {
+        if (array_key_exists($key, $row)) {
+          $plucked[] = $row->$key;
+        }
+      }
+      unset($arrSource);
+
+      return $plucked;
+}
+
+/**
+ * Takes a multi dimensional array and returns an array of $key from each row.
+ * Similar to array_column in later versions of PHP
+ *
+ * @since 0.0.1
+ * @param string $key The column to pluck from the rows
+ * @return array The array of $keys from each row.
+ */
+function datasync_pluckColumn($key, $arrSource){
+     $plucked = array();
+
+      foreach ($arrSource as $row) {
+        if (array_key_exists($key, $row)) {
+          $plucked[] = $row[$key];
+        }
+      }
+
+      unset($arrSource);
+
+      return $plucked;
+}
+
+
+function datasync_redactResultSort($a, $b){
+    //return strlen($b['matches']) - strlen($a['matches']);
+    return strcasecmp($a['matches'], $b['matches']);
+}
+
+function datasync_getMostRestrictive($a, $b){
+    $arrA = explode(",", $a);
+    $arrB = explode(",", $b);
+    
+    
+    if(count($arrA) < count($arrB)){
+        return $a;
+    }else{
+        return $b;
+    }
+}
+
+function datasync_isPositiveInteger($value){
+    return ( intval( $value ) >= 0);
+}
+
+function datasync_escapeRegexString($content){
+    
+        $escapedContent = preg_quote($content);
+        $escapedContent = str_replace("/", "\/", $escapedContent);
+        
+        return $escapedContent;
+}

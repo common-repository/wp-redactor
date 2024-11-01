@@ -1,0 +1,76 @@
+{
+    "name":             "DataSyncTech/wp-redactor",
+    "description":      "A Wordpress plugin to enable content redaction.",
+    "keywords":         ["wordpress", "plugin", "redact"],
+    "homepage":         "http://datasynctech.com",
+    "time":             "2016-01-01",
+    "license":          "GPL2",
+    "authors": [
+        {
+            "name":         "Joseph King",
+            "email":        "joking777@gmail.com",
+            "role":         "Developer"
+        }
+    ],
+    "require": {
+    	"php": ">=5.3.3",
+    	"thomascgray/NooNooFluentRegex": "0.1"
+    },
+    "require-dev": {
+    	"vlucas/phpdotenv": "2.*",
+        "phpunit/phpunit": "4.8.*",
+    	"phpunit/php-timer": "~1.0",
+    	"fzaninotto/faker": "1.*"
+    },
+    "autoload": {
+    	"psr-0": {"Datasync\\": "includes/"},
+    	"files" : [
+    		"includes/utils/constants.php",
+    		"includes/utils/environment.php",
+    		"includes/utils/functions.php",
+    		"includes/utils/regex.php"
+    		]
+    },
+    "scripts": {
+    	"phpunit-clean": [
+    		"rm -fr /tmp/wordpress-tests-lib",
+    		"rm -fr /tmp/wordpress",
+    		"rm -fr /tmp/wordpress.tar.gz",
+    		"rm -fr /tmp/wp-latest.json",
+    		"echo 'DROP DATABASE IF EXISTS `wordpress_test`;' > /tmp/wordpress-drop-test-mysql",
+    		"mysql -u root -pwordpress < /tmp/wordpress-drop-test-mysql",
+    		"rm /tmp/wordpress-drop-test-mysql"
+    	],
+    	"phpunit-install": [
+    		"@phpunit-clean",
+    		"bash bin/install-wp-tests.sh wordpress_test root wordpress localhost latest"
+    	],
+    	"phpunit": [
+    		"phpunit"
+    	],
+    	"phpdoc-clean": [
+    		"rm -fr ./docs"
+    	],
+    	"phpdoc": [
+    		"@phpdoc-clean",
+    		"phpdoc -d ./ -t ./docs --ignore=vendor/*,tests/*" 
+    	]
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "thomascgray/NooNooFluentRegex",
+                "version": "0.1",
+                "dist": {
+                    "url": "https://github.com/thomascgray/NooNooFluentRegex/archive/v0.1.zip",
+                    "type": "zip"
+                },
+                "autoload": {
+                	"files": ["Regex.php"]
+    			}
+            }
+        }
+        
+    ]
+}

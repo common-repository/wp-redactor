@@ -1,0 +1,25 @@
+<?php
+/**                                                                    
+* wp-redactor                                                      
+*                                                                      
+* @package     wp-redactor                                         
+* @author      DataSync Technologies                                       
+* @copyright   2016 DataSync Technologies                                  
+* @license                                                             
+*                                                                      
+*/                                                                     
+
+
+
+
+function datasync_pluckColumn($key, $arrSource){
+     $plucked = array();
+      foreach ($arrSource as $row) {
+        if (array_key_exists($key, $row)) {
+          $plucked[] = $row->$key;
+        }
+      }
+      unset($arrSource);
+
+      return $plucked;
+}

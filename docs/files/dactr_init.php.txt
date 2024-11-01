@@ -1,0 +1,72 @@
+/**                                                                    
+* wordactor                                                      
+*                                                                      
+* @package     wordactor                                         
+* @author      William P. Michaels                                       
+* @copyright   2016 William P. Michaels                                  
+* @license                                                             
+*                                                                      
+* @wordpress-plugin                                                    
+* Plugin Name: wordactor                                         
+* Plugin URI:  https://bitbucket.org/psiphonshiniz/wordactor           
+* Description: Wordpress plugin to manage content server wide                                  
+* Version:     0.0.1                                      
+* Author:      William P. Michaels                                       
+* Author URI:  https://shiniz.com                                      
+* Text Domain: dctr                                                    
+* License:     BSD-2-Clause                                      
+* License URI:                                                         
+*                                                                      
+*/                                                                     
+
+/**                                                                    
+* wordactor                                                      
+*                                                                      
+* @package     wordactor                                         
+* @author      William P. Michaels                                       
+* @copyright   2016 William P. Michaels                                  
+* @license                                                             
+*                                                                      
+* @wordpress-plugin                                                    
+* Plugin Name: wordactor                                         
+* Plugin URI:  https://bitbucket.org/psiphonshiniz/wordactor           
+* Description: Wordpress plugin to manage content server wide                                  
+* Version:     0.0.1                                      
+* Author:      William P. Michaels                                       
+* Author URI:  https://shiniz.com                                      
+* Text Domain: dctr                                                    
+* License:     BSD-2-Clause                                      
+* License URI:                                                         
+*                                                                      
+*/                                                                     
+
+<?php
+/**                                                                    
+* wordactor                                                      
+*                                                                      
+* @package     wordactor                                         
+* @author      William P. Michaels                                       
+* @copyright   2016 William P. Michaels                                  
+* @license                                                             
+*                                                                      
+* @wordpress-plugin                                                    
+* Plugin Name: wordactor                                         
+* Plugin URI:  https://bitbucket.org/psiphonshiniz/wordactor           
+* Description: Wordpress plugin to manage content server wide                                  
+* Version:     0.0.1                                      
+* Author:      William P. Michaels                                       
+* Author URI:  https://shiniz.com                                      
+* Text Domain: dctr                                                    
+* License:     BSD-2-Clause                                      
+* License URI:                                                         
+*                                                                      
+*                                                                      
+* Don't use any advanced features in this file to ensure it remains   
+* PHP backwards compatible                                             
+*                                                                      
+*/                                                                     
+
+
+
+
+?>

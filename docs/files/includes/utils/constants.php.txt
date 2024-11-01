@@ -1,0 +1,66 @@
+<?php
+/**                                                                    
+* Redactor                                                      
+*                                                                      
+* @package     Redactor                                         
+* @author      DataSync Technologies                                       
+* @copyright   2016 DataSync Technologies                                  
+* @license                                                             
+*                                                                      
+*/                                                                     
+if( ! defined( 'ABSPATH' ) ) exit;                                   
+
+
+/**
+*  The minimum version of PHP that the plugin will work with.
+*/
+define( "datasync_PHP_MINIMUM_VERSION", '5.3.0'               );
+
+/**
+*  The public name to show users when referring to the plugin. Populated using Grunt values extracted
+* from package.json
+*/
+define( "datasync_PLUGIN_PUBLIC_NAME" , 'Redactor'    );
+
+/**
+*  The short name of the plugin that is code compatible. Populated using Grunt values extracted
+* from package.json
+*/
+define( "datasync_PLUGIN_PRIVATE_NAME", 'wpredactor'   );
+
+/**
+*  The domain name to use for the i18n translations. Populated using Grunt values extracted
+* from package.json
+*/
+define( "datasync_PLUGIN_TEXTDOMAIN"  , 'wp-redactor'    );
+
+/**
+* The plugin's current version number. Populated using Grunt values extracted
+* from package.json
+*/
+define( "datasync_PLUGIN_VERSION"     , '0.0.1' );
+
+/**
+* The plugin's current version number. Populated using Grunt values extracted
+* from package.json
+*/
+define( 'datasync_APPLY_REDACTIONS_TO_WHOLE_WORDS', true );
+
+define( 'datasync_REGEX_NOT_IN_HTML_TAG', '(?=[^>]*(<|$))');
+
+/**********************************************************************************
+ * Database constants
+ **********************************************************************************/
+
+/**
+* The name of the table to create and use for storing redactions.
+*/
+define( "datasync_DATABASE_REDACT_TABLENAME", 'datasync_redactions' );
+
+/**
+ * Redacted character
+ */
+define("datasync_FULL_BLOCK", '&#9608;');
+
+?>
+

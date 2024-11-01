@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACA,iBAAkB,CAChB,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,MAAM,CAAE,CAAC,CACT,MAAM,CAAE,CAAC,CACT,UAAU,CAAE,WAAW,CACvB,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC",
+"sources": ["../../src/scss/ruleGrid.scss"],
+"names": [],
+"file": "ruleGrid.min.css"
+}

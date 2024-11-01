@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+.redacted {
+  display: inline;
+}
+
+.allowed {
+  display: inline;
+  border-style: dashed;
+  border-color: #F08080;
+  background-color: #FFB6C1;
+}
+
+.alttext {
+	border: 1px dashed #000000;
+}
+
+.solid {
+	
+}
+
+.spoiler {
+	
+}
+
+.hidden {
+	display: none;
+}
+
+#datasync_redaction_dialog-body {
+  overflow: hidden !important;
+}
+
+/*# sourceMappingURL=style.css.map */

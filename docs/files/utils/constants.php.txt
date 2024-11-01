@@ -1,0 +1,22 @@
+<?php
+/**                                                                    
+* wp-redactor                                                      
+*                                                                      
+* @package     wp-redactor                                         
+* @author      DataSync Technologies                                       
+* @copyright   2016 DataSync Technologies                                  
+* @license                                                             
+*                                                                      
+*/                                                                     
+
+
+define( "datasync_PHP_MINIMUM_VERSION", '5.0'                 );
+define( "datasync_PLUGIN_PUBLIC_NAME" , 'PUBLIC_NAME_HERE'    );
+define( "datasync_PLUGIN_PRIVATE_NAME", 'PRIVATE_NAME_HERE'   );
+define( "datasync_PLUGIN_TEXTDOMAIN"  , 'TEXT_DOMAIN_HERE'    );
+define( "datasync_PLUGIN_VERSION"     , '0.0.1' );
+
+define( "datasync_DATABASE_REDACT_TABLENAME", 'wrdctr_redactions' );
+
+?>
+

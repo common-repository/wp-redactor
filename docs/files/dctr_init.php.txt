@@ -1,0 +1,25 @@
+<?php
+/**                                                                    
+* wp-redactor                                                      
+*                                                                      
+* @package     wp-redactor                                         
+* @author      DataSync Technologies                                       
+* @copyright   2016 DataSync Technologies                                  
+* @license                                                             
+*                                                                      
+*/                                                                     
+
+
+if( ! defined( 'ABSPATH' ) ) exit;
+
+require_once( 'dctr-plugin/dctr.php' );
+require_once( 'utils/constants.php' );
+
+
+function datasync_init( $file = '' ){
+    $dctr = dctr::get_instance( $file, datasync_PLUGIN_VERSION );
+
+    return $dctr;
+}
+
+?>
